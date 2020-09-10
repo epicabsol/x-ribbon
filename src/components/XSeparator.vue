@@ -19,4 +19,13 @@ export default class XSeparator extends Vue {
     margin: 0px 4px;
     background-color: var(--app-border-light);
 }
+
+/**
+ * Dropdown separators
+ */
+.dropdown .separator {
+    height: 1px;
+    width: unset;
+    margin: 0px 0px;
+}
 </style>

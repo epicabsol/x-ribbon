@@ -1,9 +1,13 @@
 <template>
-    <button>
-        <i class="button-icon material-icons">{{ icon }}</i>
-        <div class="button-label">
-            {{ name }}
-        </div>
+    <button @mousedown="onMouseDown" @click="onClick">
+        <slot>
+            <div class="button-content">
+                <i class="button-icon material-icons">{{ icon }}</i>
+                <div class="button-label">
+                    {{ name }}
+                </div>
+            </div>
+        </slot>
     </button>
 </template>
 
@@ -14,19 +18,29 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class XButton extends Vue {
     @Prop() public icon!: string;
     @Prop() public name!: string;
+
+    private onMouseDown(event: MouseEvent) {
+        this.$emit("mousedown", event);
+    }
+
+    private onClick(event: MouseEvent) {
+        this.$emit("click", event);
+    }
 }
 </script>
 
-<style scoped>
+<style>
 button {
     background: none;
     border: none;
     outline: none;
-    padding: 4px;
     font-size: inherit;
+    padding: 0px;
+    display: flex;
+    box-sizing: border-box;
 }
 
-button:hover {
+button:hover, button.active {
     background-color: var(--app-hover-light);
 }
 
@@ -36,6 +50,30 @@ button:active {
 
 .button-label {
     text-align: center;
+}
+
+.button-content {
+    padding: 4px;
+}
+
+/**
+ * Dropdown buttons
+ */
+.dropdown button {
+    /*height: 2em !important;*/
+    align-items: center;
+    white-space: pre;
+}
+
+.dropdown button .button-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 12px 6px 10px !important;
+}
+
+.dropdown button .button-label {
+    display: unset !important;
 }
 
 </style>

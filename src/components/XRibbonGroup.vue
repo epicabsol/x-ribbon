@@ -43,7 +43,7 @@ export default class XRibbonGroup extends Vue {
     padding-top: 5px;
 }
 
-.ribbon-group button {
+.ribbon-group .button-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,14 +56,18 @@ export default class XRibbonGroup extends Vue {
 }
 
 .ribbon-group .ribbon-stack .separator {
-    height: 2em;
+    height: 100%;
 }
 
 .ribbon-group .ribbon-stack button {
+    height: 2em;
+    align-items: center;
+}
+
+.ribbon-group .ribbon-stack .button-content {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 2em;
     padding: 2px 6px 2px 4px;
     width: unset;
 }
@@ -74,8 +78,21 @@ export default class XRibbonGroup extends Vue {
 }
 
 .ribbon-group .ribbon-stack .ribbon-row button {
+    height: auto;
+}
+
+.ribbon-group .ribbon-stack .ribbon-row button .button-content {
     padding: 4px;
-    width: 2em;
+}
+
+.ribbon-group .ribbon-stack .ribbon-row button .button-icon {
+    width: 1em;
+    height: 1em;
+    margin-right: 0px;
+}
+
+.ribbon-group .ribbon-stack button .button-dropdown-icon {
+    margin-left: 2px;
 }
 
 .ribbon-group .ribbon-stack .ribbon-row button .button-label {

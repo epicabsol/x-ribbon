@@ -19,7 +19,15 @@
                                     <x-button name="Increase Font Size" icon="format_size"></x-button>
                                     <x-button name="Decrease Font Size" icon="text_fields"></x-button>
                                     <x-separator></x-separator>
-                                    <x-button name="Change Case" icon="title"></x-button>
+                                    <x-menu-button name="Change Case" icon="title">
+                                        <template v-slot:menu>
+                                            <x-button name="Sentence case." icon=""></x-button>
+                                            <x-button name="lowercase" icon=""></x-button>
+                                            <x-button name="UPPERCASE" icon=""></x-button>
+                                            <x-button name="Capitalize Each Word" icon=""></x-button>
+                                            <x-button name="tOGGLE cASE" icon=""></x-button>
+                                        </template>
+                                    </x-menu-button>
                                     <x-separator></x-separator>
                                     <x-button name="Clear All Formatting" icon="format_clear"></x-button>
                                 </x-ribbon-row>
@@ -31,7 +39,17 @@
                                     <x-button name="Subscript" icon="subscript"></x-button>
                                     <x-button name="Superscript" icon="superscript"></x-button>
                                     <x-separator></x-separator>
-                                    <x-button name="Text Effects and Typography" icon="brush"></x-button>
+                                    <x-menu-button name="Text Effects and Typography" icon="brush">
+                                        <template v-slot:menu>
+                                            <x-button name="Outline" icon=""></x-button>
+                                            <x-button name="Shadow" icon=""></x-button>
+                                            <x-button name="Reflection" icon=""></x-button>
+                                            <x-button name="Glow" icon=""></x-button>
+                                            <x-button name="Number Styles" icon=""></x-button>
+                                            <x-button name="Ligatures" icon=""></x-button>
+                                            <x-button name="Stylistic Sets" icon=""></x-button>
+                                        </template>
+                                    </x-menu-button>
                                     <x-button name="Text Highlight Color" icon="font_download"></x-button>
                                     <x-button name="Font Color" icon="text_format"></x-button>
                                 </x-ribbon-row>
@@ -42,7 +60,13 @@
                                 <x-ribbon-row>
                                     <x-button name="Bullets" icon="format_list_bulleted"></x-button>
                                     <x-button name="Numbering" icon="format_list_numbered"></x-button>
-                                    <x-button name="Multilevel List" icon="read_more"></x-button>
+                                    <x-menu-button name="Multilevel List" icon="read_more">
+                                        <template v-slot:menu>
+                                            <x-button name="Change List Level" icon=""></x-button>
+                                            <x-button name="Define New Multilevel List..." icon=""></x-button>
+                                            <x-button name="Define New List Style..." icon=""></x-button>
+                                        </template>
+                                    </x-menu-button>
                                     <x-separator></x-separator>
                                     <x-button name="Decrease Indent" icon="format_indent_decrease"></x-button>
                                     <x-button name="Increase Indent" icon="format_indent_increase"></x-button>
@@ -57,7 +81,20 @@
                                     <x-button name="Align Right" icon="format_align_right"></x-button>
                                     <x-button name="Justify" icon="format_align_justify"></x-button>
                                     <x-separator></x-separator>
-                                    <x-button name="Line and Paragraph Spacing" icon="format_line_spacing"></x-button>
+                                    <x-menu-button name="Line and Paragraph Spacing" icon="format_line_spacing">
+                                        <template v-slot:menu>
+                                            <x-button name="1.0" icon=""></x-button>
+                                            <x-button name="1.15" icon=""></x-button>
+                                            <x-button name="1.5" icon=""></x-button>
+                                            <x-button name="2.0" icon=""></x-button>
+                                            <x-button name="2.5" icon=""></x-button>
+                                            <x-button name="3.0" icon=""></x-button>
+                                            <x-button name="Line Spacing Options..." icon=""></x-button>
+                                            <x-separator></x-separator>
+                                            <x-button name="Add Space Before Paragraph" icon=""></x-button>
+                                            <x-button name="Remove Space After Paragraph" icon=""></x-button>
+                                        </template>
+                                    </x-menu-button>
                                     <x-separator></x-separator>
                                     <x-button name="Shading" icon="palette"></x-button>
                                     <x-button name="Borders" icon="border_bottom"></x-button>
@@ -70,7 +107,14 @@
                             <x-ribbon-stack>
                                 <x-button name="Find" icon="search"></x-button>
                                 <x-button name="Replace" icon="find_replace"></x-button>
-                                <x-button name="Select" icon="mouse"></x-button>
+                                <x-menu-button name="Select" icon="mouse">
+                                    <template v-slot:menu>
+                                        <x-button name="Select All" icon=""></x-button>
+                                        <x-button name="Select Objects" icon=""></x-button>
+                                        <x-button name="Select With Similar Formatting" icon=""></x-button>
+                                        <x-button name="Selection Pane..." icon=""></x-button>
+                                    </template>
+                                </x-menu-button>
                             </x-ribbon-stack>
                         </x-ribbon-group>
                         <x-ribbon-group name="Voice">
@@ -105,6 +149,7 @@ import XRibbonGroup from "./components/XRibbonGroup.vue";
 import XRibbonStack from "./components/XRibbonStack.vue";
 import XRibbonRow from "./components/XRibbonRow.vue";
 import XButton from "./components/XButton.vue";
+import XMenuButton from "./components/XMenuButton.vue";
 import XSeparator from "./components/XSeparator.vue";
 import XRibbonTabInfo from "./models/XRibbonTabInfo";
 
@@ -115,6 +160,7 @@ import XRibbonTabInfo from "./models/XRibbonTabInfo";
         XRibbonStack,
         XRibbonRow,
         XButton,
+        XMenuButton,
         XSeparator
     },
 })
@@ -176,6 +222,7 @@ body {
     --app-accent: rgb(40, 110, 190);
     --app-ribbon: rgb(240, 240, 240);
     --app-content: rgb(225, 225, 225);
+    --app-overlay: rgb(248, 248, 248);
 
     --app-border-light: rgba(0, 0, 0, 0.1);
     --app-hover-light: rgba(0, 0, 0, 0.08);
