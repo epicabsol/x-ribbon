@@ -1,13 +1,13 @@
 <template>
-    <button @mousedown="onMouseDown" @click="onClick">
-        <slot>
-            <div class="button-content">
+    <button @mousedown="onMouseDown" @click="onClick" @mouseup="onMouseUp">
+        <div class="button-content">
+            <slot>
                 <i class="button-icon material-icons">{{ icon }}</i>
                 <div class="button-label">
                     {{ name }}
                 </div>
-            </div>
-        </slot>
+            </slot>
+        </div>
     </button>
 </template>
 
@@ -21,10 +21,15 @@ export default class XButton extends Vue {
 
     private onMouseDown(event: MouseEvent) {
         this.$emit("mousedown", event);
+        //document.body.focus();
     }
 
     private onClick(event: MouseEvent) {
         this.$emit("click", event);
+    }
+
+    private onMouseUp(event: MouseEvent) {
+        this.$emit("mouseup", event);
     }
 }
 </script>
@@ -48,6 +53,10 @@ button:active {
     background-color: var(--app-press-light);
 }
 
+.button-icon {
+    font-size: 1.3em;
+}
+
 .button-label {
     text-align: center;
 }
@@ -69,11 +78,15 @@ button:active {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 6px 12px 6px 10px !important;
+    padding: 6px 12px 6px 8px !important;
 }
 
 .dropdown button .button-label {
     display: unset !important;
+}
+
+.dropdown button .button-icon {
+    width: 1em;
 }
 
 </style>

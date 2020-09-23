@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown-anchor">
-        <div ref="dropdown" class="dropdown" tabindex="0" v-bind:class="{ visible: value }" v-on:blur="onBlur">
+        <div ref="dropdown" class="dropdown" v-bind:tabindex="value ? 0 : undefined" v-bind:class="{ visible: value }" v-on:blur="onBlur" @mousedown="eatMouseEvent" @mouseup="eatMouseEvent" @click="eatMouseEvent">
             <slot></slot>
         </div>
     </div>
@@ -20,18 +20,19 @@ export default class XDropdown extends Vue {
     @Watch("value")
     onPropertyChanged(value: boolean, oldValue: boolean) {
         if (value && !oldValue) {
-            console.log(this.value);
             this.$nextTick(() => {
                 const dropdown = this.$refs.dropdown as HTMLElement;
                 dropdown.focus();
             });
-            console.log(this.$refs.dropdown);
-            console.log(document.activeElement);
         }
     }
 
     private onBlur() {
         this.setVisibility(false);
+    }
+
+    eatMouseEvent(event: MouseEvent) {
+        event.stopPropagation();
     }
 }
 </script>
@@ -63,7 +64,7 @@ export default class XDropdown extends Vue {
     transition: opacity 0.15s, transform 0.15s;
 }
 
-.dropdown.visible:focus {
+.dropdown:focus {
     outline: none;
 }
 

@@ -1,15 +1,13 @@
 <template>
     <x-button class="menu-button" :class="{ active: isMenuVisible }" :icon="icon" :name="name" @mousedown="onMouseDown" @click="onClick">
         <x-dropdown class="button-dropdown" v-model="isMenuVisible"><slot name="menu"></slot></x-dropdown>
-        <div class="button-content">
-            <slot>
-                <i class="button-icon material-icons">{{ icon }}</i>
-                <div class="button-label">
-                    {{ name }}
-                </div>
-            </slot>
-            <x-dropdown-icon></x-dropdown-icon>
-        </div>
+        <slot>
+            <i class="button-icon material-icons">{{ icon }}</i>
+            <div class="button-label">
+                {{ name }}
+            </div>
+        </slot>
+        <x-dropdown-icon></x-dropdown-icon>
     </x-button>
 </template>
 
@@ -33,14 +31,11 @@ export default class XMenuButton extends Vue {
 
     onMouseDown(event: MouseEvent) {
         event.preventDefault();
-        console.log("MenuButton Mouse Down!");
         this.isMenuVisible = !this.isMenuVisible;
     }
 
     onClick(event: MouseEvent) {
-
         event.preventDefault();
-        console.log("MenuButton Mouse Down!");
         this.isMenuVisible = true;
     }
 }

@@ -6,7 +6,15 @@
                 <template v-slot:content-home="{ }">
                     <div class="groups">
                         <x-ribbon-group name="Clipboard">
-                            <x-button name="Paste" icon="content_paste"></x-button>
+                            <x-split-button name="Paste" icon="content_paste">
+                                <template v-slot:menu>
+                                    <x-button name="Keep Source Formatting" icon=""></x-button>
+                                    <x-button name="Match Formatting" icon=""></x-button>
+                                    <x-button name="Keep Text Only" icon=""></x-button>
+                                    <x-separator></x-separator>
+                                    <x-button name="Paste Special..." icon=""></x-button>
+                                </template>
+                            </x-split-button>
                             <x-ribbon-stack>
                                 <x-button name="Cut" icon="content_cut"></x-button>
                                 <x-button name="Copy" icon="content_copy"></x-button>
@@ -21,7 +29,7 @@
                                     <x-separator></x-separator>
                                     <x-menu-button name="Change Case" icon="title">
                                         <template v-slot:menu>
-                                            <x-button name="Sentence case." icon=""></x-button>
+                                            <x-button name="Sentence case." icon="title"></x-button>
                                             <x-button name="lowercase" icon=""></x-button>
                                             <x-button name="UPPERCASE" icon=""></x-button>
                                             <x-button name="Capitalize Each Word" icon=""></x-button>
@@ -150,6 +158,7 @@ import XRibbonStack from "./components/XRibbonStack.vue";
 import XRibbonRow from "./components/XRibbonRow.vue";
 import XButton from "./components/XButton.vue";
 import XMenuButton from "./components/XMenuButton.vue";
+import XSplitButton from "./components/XSplitButton.vue";
 import XSeparator from "./components/XSeparator.vue";
 import XRibbonTabInfo from "./models/XRibbonTabInfo";
 
@@ -161,6 +170,7 @@ import XRibbonTabInfo from "./models/XRibbonTabInfo";
         XRibbonRow,
         XButton,
         XMenuButton,
+        XSplitButton,
         XSeparator
     },
 })

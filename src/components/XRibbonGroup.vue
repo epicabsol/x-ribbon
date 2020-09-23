@@ -43,28 +43,45 @@ export default class XRibbonGroup extends Vue {
     padding-top: 5px;
 }
 
-.ribbon-group .button-content {
+.ribbon-group-content > button > .button-content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.ribbon-group button .button-icon {
+.ribbon-group-content > button > .button-content > .button-icon {
     display: inline-block;
     font-size: 3em;
     width: 1em;
 }
 
-.ribbon-group .ribbon-stack .separator {
+.ribbon-group-content > .split-button > .split-button-main > .button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0px;
+}
+
+.ribbon-group-content > .split-button > .split-button-main > .button-content > .button-icon {
+    display: inline-block;
+    font-size: 3em;
+    width: 1em;
+}
+
+.ribbon-group-content > .split-button > .split-button-menu > .button-content {
+    padding-top: 0px;
+}
+
+.ribbon-group-content > .ribbon-stack .separator {
     height: 100%;
 }
 
-.ribbon-group .ribbon-stack button {
+.ribbon-group-content > .ribbon-stack button {
     height: 2em;
     align-items: center;
 }
 
-.ribbon-group .ribbon-stack .button-content {
+.ribbon-group-content .ribbon-stack .button-content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -73,7 +90,6 @@ export default class XRibbonGroup extends Vue {
 }
 
 .ribbon-group .ribbon-stack button .button-icon {
-    font-size: 1.3em;
     margin-right: 3px;
 }
 
