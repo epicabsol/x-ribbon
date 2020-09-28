@@ -43,6 +43,7 @@ export default class XDropdown extends Vue {
     position: absolute;
     background-color: var(--app-overlay);
     top: 100%;
+    min-width: 100%;
     text-align: left;
     box-sizing: border-box;
     display: flex;
@@ -52,6 +53,7 @@ export default class XDropdown extends Vue {
     opacity: 0.0;
     transition: opacity 0.15s, transform 0.15s, visibility 0.0s linear 0.15s;
     transform: translateY(-5px);
+    pointer-events: all;
 
     border: 1px solid var(--app-border-light);
     /*box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.45);*/
@@ -78,5 +80,6 @@ export default class XDropdown extends Vue {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    pointer-events: none;
 }
 </style>

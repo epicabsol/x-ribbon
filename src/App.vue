@@ -24,6 +24,8 @@
                         <x-ribbon-group name="Font">
                             <x-ribbon-stack class="centered">
                                 <x-ribbon-row>
+                                    <x-combo-box v-bind:items="fonts" v-model="currentFont"></x-combo-box>
+                                    <x-combo-box class="shift-left" v-bind:items="fontSizes" v-model="currentFontSize"></x-combo-box>
                                     <x-button name="Increase Font Size" icon="format_size"></x-button>
                                     <x-button name="Decrease Font Size" icon="text_fields"></x-button>
                                     <x-separator></x-separator>
@@ -160,6 +162,7 @@ import XButton from "./components/XButton.vue";
 import XMenuButton from "./components/XMenuButton.vue";
 import XSplitButton from "./components/XSplitButton.vue";
 import XSeparator from "./components/XSeparator.vue";
+import XComboBox from "./components/XComboBox.vue";
 import XRibbonTabInfo from "./models/XRibbonTabInfo";
 
 @Component({
@@ -171,7 +174,8 @@ import XRibbonTabInfo from "./models/XRibbonTabInfo";
         XButton,
         XMenuButton,
         XSplitButton,
-        XSeparator
+        XSeparator,
+        XComboBox
     },
 })
 export default class App extends Vue {
@@ -187,6 +191,24 @@ export default class App extends Vue {
         new XRibbonTabInfo("developer", "Developer"),
         new XRibbonTabInfo("addins", "Add-ins")
     ];
+    public fonts: string[] = [
+        "Calibri",
+        "Times New Roman"
+    ];
+    public currentFont: string = this.fonts[0];
+    public fontSizes: number[] = [
+        10,
+        11,
+        12,
+        14,
+        16,
+        20,
+        24,
+        28,
+        32,
+        36
+    ];
+    public currentFontSize = 11;
 }
 </script>
 
@@ -226,6 +248,10 @@ body {
 
 .groups {
     display: flex;
+}
+
+.shift-left {
+    margin-left: -1px;
 }
 
 #app {

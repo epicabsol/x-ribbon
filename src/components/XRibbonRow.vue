@@ -17,6 +17,6 @@ export default class XRibbonRow extends Vue {
 .ribbon-row {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
 }
 </style>
