@@ -24,15 +24,15 @@
                         <x-ribbon-group name="Font">
                             <x-ribbon-stack class="centered">
                                 <x-ribbon-row>
-                                    <x-combo-box v-bind:items="fonts" v-model="currentFont">
+                                    <x-combo-box style="width: 8em;" v-bind:items="fonts" v-model="currentFont" v-bind:style="{ 'font-family': currentFont }">
                                         <template v-slot:menuItem="{ item }">
                                             <span v-bind:style="{ 'font-family': item }">{{ item }}</span>
                                         </template>
-                                        <template v-slot:currentItem="{ item }">
-                                            <span v-bind:style="{ 'font-family': item }">{{ item }}</span>
-                                        </template>
+                                        <!--<template v-slot:currentItem="{ item }">
+                                            <span>{{ item }}</span>
+                                        </template>-->
                                     </x-combo-box>
-                                    <x-combo-box class="shift-left" v-bind:items="fontSizes" v-model="currentFontSize">
+                                    <x-combo-box class="shift-left" style="width: 4em;" v-bind:items="fontSizes" v-model="currentFontSize" :validate="onValidateFontSize">
                                         <template v-slot:menuItem="{ item }">
                                             <span v-bind:style="{ 'font-size': item + 'pt' }">{{ item }}</span>
                                         </template>
@@ -206,26 +206,30 @@ export default class App extends Vue {
         "Calibri",
         "Times New Roman"
     ];
-    public currentFont: string = this.fonts[0];
-    public fontSizes: number[] = [
-        10,
-        11,
-        12,
-        14,
-        16,
-        20,
-        24,
-        28,
-        32,
-        36
+    public currentFont = "Calibri";
+    public fontSizes: string[] = [
+        "6",
+        "7",
+        "8",
+        "10",
+        "11",
+        "12",
+        "14",
+        "16",
+        "20",
+        "24",
+        "28",
+        "32",
+        "36"
     ];
-    public currentFontSize = 11;
+    public currentFontSize = "11";
 
     private potentialFonts = [
         "Lucida Console",
         "Monaco",
         "Courier New",
         "Courier",
+        "Calibri",
         "Arial",
         "Helvetica",
         "Tahoma",
@@ -240,6 +244,10 @@ export default class App extends Vue {
 
     mounted() {
         this.fonts = this.potentialFonts;
+    }
+
+    onValidateFontSize(text: string) {
+        return !isNaN(Number(text))
     }
 }
 </script>
