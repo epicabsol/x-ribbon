@@ -24,8 +24,19 @@
                         <x-ribbon-group name="Font">
                             <x-ribbon-stack class="centered">
                                 <x-ribbon-row>
-                                    <x-combo-box v-bind:items="fonts" v-model="currentFont"></x-combo-box>
-                                    <x-combo-box class="shift-left" v-bind:items="fontSizes" v-model="currentFontSize"></x-combo-box>
+                                    <x-combo-box v-bind:items="fonts" v-model="currentFont">
+                                        <template v-slot:menuItem="{ item }">
+                                            <span v-bind:style="{ 'font-family': item }">{{ item }}</span>
+                                        </template>
+                                        <template v-slot:currentItem="{ item }">
+                                            <span v-bind:style="{ 'font-family': item }">{{ item }}</span>
+                                        </template>
+                                    </x-combo-box>
+                                    <x-combo-box class="shift-left" v-bind:items="fontSizes" v-model="currentFontSize">
+                                        <template v-slot:menuItem="{ item }">
+                                            <span v-bind:style="{ 'font-size': item + 'pt' }">{{ item }}</span>
+                                        </template>
+                                    </x-combo-box>
                                     <x-button name="Increase Font Size" icon="format_size"></x-button>
                                     <x-button name="Decrease Font Size" icon="text_fields"></x-button>
                                     <x-separator></x-separator>
@@ -209,6 +220,27 @@ export default class App extends Vue {
         36
     ];
     public currentFontSize = 11;
+
+    private potentialFonts = [
+        "Lucida Console",
+        "Monaco",
+        "Courier New",
+        "Courier",
+        "Arial",
+        "Helvetica",
+        "Tahoma",
+        "Geneva",
+        "Georgia",
+        "Palatino Linotype",
+        "Book Antiqua",
+        "Palatino",
+        "Times New Roman",
+        "Times"
+    ];
+
+    mounted() {
+        this.fonts = this.potentialFonts;
+    }
 }
 </script>
 
@@ -244,6 +276,7 @@ body {
     background-color: white;
     outline: 1px solid var(--app-border-light);
     margin: 0.5in auto;
+    cursor: text;
 }
 
 .groups {

@@ -1,7 +1,7 @@
 <template>
-    <div class="combo-box">
+    <div class="combo-box" v-bind:class="{ active: isMenuVisible }">
         <x-dropdown class="combo-box-menu" v-model="isMenuVisible">
-            <x-button v-for="(item,index) in items" v-bind:key="index" @click="selectItem(item);">
+            <x-button v-for="(item, index) in items" v-bind:key="index" v-bind:class="{ active: item === value }" @click="selectItem(item);">
                 <slot name="menuItem" v-bind:item="item">
                     {{ item }}
                 </slot>
@@ -89,7 +89,7 @@ export default class XComboBox extends Vue {
     padding: 4px 2px !important;
 }
 
-.combo-box:hover > .combo-box-border > button {
+.combo-box:hover > .combo-box-border > button, .combo-box.active > .combo-box-border > button {
     background-color: var(--app-hover-light);
 }
 </style>
